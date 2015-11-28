@@ -39,7 +39,7 @@
 ```
 
 土地を構成する三角形を定義します。
-頂点の名前を右回りに定義する必要があります。
+それぞれの三角形において頂点の名前を右回りに定義する必要があります。
 
 ```java
         List<Triangle> triangles = Arrays.asList(
@@ -48,7 +48,7 @@
         );
 ```
 
-基準とする２点（この場合はaとb）を指定してLandオブジェクトを作成します。
+基準とする２点（この場合はaとb）を左下、右下の順で指定してLandオブジェクトを作成します。
 
 ```java
         Land land = new Land("a", "b", edges, triangles);
@@ -70,6 +70,7 @@
 
 
 基準とする２点を変えたい場合は別のLandオブジェクトを作成します。
+辺の長さと三角形の定義はそのまま再利用します。
 
 ```java
         Land land2 = new Land("d", "a", edges, triangles);
@@ -87,8 +88,4 @@
 
 出力されるSVGは以下のようになります。
 
-![図面](data/sample.png)
-        
-
-
-
+![図面](data/sample2.png)
