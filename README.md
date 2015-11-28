@@ -48,7 +48,7 @@
         );
 ```
 
-正面とする２点を指定してLandオブジェクトを作成します。
+基準とする２点（この場合はaとb）を指定してLandオブジェクトを作成します。
 
 ```java
         Land land = new Land("a", "b", edges, triangles);
@@ -67,6 +67,28 @@
 出力されるSVGは以下のようになります。
 
 ![図面](data/sample.png)
+
+
+基準とする２点を変えたい場合は別のLandオブジェクトを作成します。
+
+```java
+        Land land2 = new Land("d", "a", edges, triangles);
+        System.out.printf("面積=%f㎡%n", land2.area);
+        System.out.printf("想定整形地 %fm×%fm=%f㎡%n", land2.width, land2.height, land2.legalShapedArea);
+        land.writeSVG(new File("data/sample2.svg"));
+```
+
+結果は以下のように表示されます。
+
+```
+面積=159.213309㎡
+想定整形地 13.500000m×16.134974m=217.822146㎡
+```
+
+出力されるSVGは以下のようになります。
+
+![図面](data/sample.png)
         
+
 
 

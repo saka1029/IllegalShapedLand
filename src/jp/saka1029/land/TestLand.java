@@ -80,6 +80,10 @@ public class TestLand {
         System.out.printf("面積=%f㎡%n", land.area);
         System.out.printf("想定整形地 %fm×%fm=%f㎡%n", land.width, land.height, land.legalShapedArea);
         land.writeSVG(new File("data/sample.svg"));
+        Land land2 = new Land("d", "a", edges, triangles);
+        System.out.printf("面積=%f㎡%n", land2.area);
+        System.out.printf("想定整形地 %fm×%fm=%f㎡%n", land2.width, land2.height, land2.legalShapedArea);
+        land2.writeSVG(new File("data/sample2.svg"));
     }
     
     double area(double a, double b, double c) {
