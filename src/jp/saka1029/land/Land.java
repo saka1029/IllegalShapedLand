@@ -108,7 +108,8 @@ public class Land {
             distances.put(e.right + e.left, e.distance);
         }
         if (!distances.containsKey(startBase + endBase))
-            throw new IllegalArgumentException("%sと%sの距離がedgesに定義されていません");
+            throw new IllegalArgumentException(
+                String.format("%sと%sの距離がedgesに定義されていません", startBase, endBase));
         this.distances = Collections.unmodifiableMap(distances);
         this.startBase = startBase;
         this.endBase = endBase;

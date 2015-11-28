@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2117" height="1668">
+<polygon points="200 1469 1917 1469 1917 200 200 200 "
+ stroke="black" stroke-width="2" fill="none" stroke-dasharray="20 2"/>
+<polygon points="200 1469 662 200 1917 668 "
+ stroke="black" stroke-width="2" fill="#d0f0d0"/>
+<polygon points="200 1469 1917 668 1917 1469 "
+ stroke="black" stroke-width="2" fill="#d0f0d0"/>
+<text x="1059" y="1469" font-size="60" text-anchor="middle" dominant-baseline="middle" transform="rotate(-0.000000 1059 1469)">17.17</text>
+<text x="1917" y="1068" font-size="60" text-anchor="middle" dominant-baseline="middle" transform="rotate(-89.972192 1917 1068)">8.01</text>
+<text x="1290" y="434" font-size="60" text-anchor="middle" dominant-baseline="middle" transform="rotate(20.424367 1290 434)">13.40</text>
+<text x="431" y="834" font-size="60" text-anchor="middle" dominant-baseline="middle" transform="rotate(-70.004406 431 834)">13.50</text>
+<text x="1059" y="1068" font-size="60" text-anchor="middle" dominant-baseline="middle" transform="rotate(-25.004614 1059 1068)">18.95</text>
+<text x="200" y="1469" font-size="60" text-anchor="middle" dominant-baseline="middle">a</text>
+<text x="1917" y="1469" font-size="60" text-anchor="middle" dominant-baseline="middle">b</text>
+<text x="1917" y="668" font-size="60" text-anchor="middle" dominant-baseline="middle">c</text>
+<text x="662" y="200" font-size="60" text-anchor="middle" dominant-baseline="middle">d</text>
+<text x="1059" y="1469" font-size="60" text-anchor="middle" dominant-baseline="middle" transform="rotate(-0.000000 1059 1469)">17.17</text>
+<text x="200" y="834" font-size="60" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90.000000 200 834)">12.69</text>
+</svg>

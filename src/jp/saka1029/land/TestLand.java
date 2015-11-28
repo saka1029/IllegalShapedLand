@@ -50,7 +50,6 @@ public class TestLand {
             new Edge("c", "d", 4.90),
             new Edge("c", "e", 7.15),
             new Edge("e", "d", 8.68)
-//            new Edge("d", "e", 3.00)
         );
         List<Triangle> triangles = Arrays.asList(
             new Triangle("a", "b", "e"),
@@ -58,7 +57,43 @@ public class TestLand {
             new Triangle("c", "d", "e")
         );
         Land land = new Land("a", "e", edges, triangles);
+        System.out.printf("面積=%f㎡%n", land.area);
+        System.out.printf("想定整形地 %fm×%fm=%f㎡%n", land.width, land.height, land.legalShapedArea);
         land.writeSVG(new File("data/land.svg"));
+    }
+    
+
+    @Test
+    public void testSample() throws IOException {
+        List<Edge> edges = Arrays.asList(
+            new Edge("a", "b", 17.17),
+            new Edge("b", "c",  8.01),
+            new Edge("c", "d", 13.40),
+            new Edge("d", "a", 13.50),
+            new Edge("a", "c", 18.95)
+        );
+        List<Triangle> triangles = Arrays.asList(
+            new Triangle("a", "d", "c"),
+            new Triangle("a", "c", "b")
+        );
+        Land land = new Land("a", "b", edges, triangles);
+        System.out.printf("面積=%f㎡%n", land.area);
+        System.out.printf("想定整形地 %fm×%fm=%f㎡%n", land.width, land.height, land.legalShapedArea);
+        land.writeSVG(new File("data/sample.svg"));
+    }
+    
+    double area(double a, double b, double c) {
+        double s = (a + b + c) / 2;
+        return Math.sqrt(s * (s - a) * (s - b) * (s - c));
+    }
+
+    @Test
+    public void testSampleTest() {
+        System.out.println(area(13.50, 13.40, 18.95));
+        System.out.println(area(13.50, 13.40, 18.95) * 2 / 18.95);
+        System.out.println(area(17.17,  8.01, 18.95));
+        System.out.println(area(17.17,  8.01, 18.95) * 2 / 18.95);
+        System.out.println(18.95 * (9.54 + 7.26) / 2);
     }
 
 }
