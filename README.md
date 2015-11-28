@@ -26,26 +26,38 @@
 
 ![地積測量図の例](data/figure.png)
 
+各頂点に名前を付けて、それぞれの辺の長さを定義します。
+
 ```java
         List<Edge> edges = Arrays.asList(
-            new Edge("a", "b", 6.30),
-            new Edge("a", "e", 8.55),
-            new Edge("b", "e", 7.30),
-            new Edge("c", "b", 4.89),
-            new Edge("c", "d", 4.90),
-            new Edge("c", "e", 7.15),
-            new Edge("e", "d", 8.68)
+            new Edge("a", "b", 17.17),
+            new Edge("b", "c",  8.01),
+            new Edge("c", "d", 13.40),
+            new Edge("d", "a", 13.50),
+            new Edge("a", "c", 18.95)
         );
+```
+
+土地を構成する三角形を定義します。
+頂点の名前を右回りに定義する必要があります。
+
+```java
         List<Triangle> triangles = Arrays.asList(
-            new Triangle("a", "b", "e"),
-            new Triangle("b", "c", "e"),
-            new Triangle("c", "d", "e")
+            new Triangle("a", "d", "c"),
+            new Triangle("a", "c", "b")
         );
-        Land land = new Land("a", "e", edges, triangles);
+```
+
+正面とする２点を指定してLandオブジェクトを作成します。
+
+```java
+        Land land = new Land("a", "b", edges, triangles);
         System.out.printf("面積=%f㎡%n", land.area);
         System.out.printf("想定整形地 %fm×%fm=%f㎡%n", land.width, land.height, land.legalShapedArea);
-        land.writeSVG(new File("data/land.svg"));
+        land.writeSVG(new File("data/sample.svg"));
 ```
+
+結果は以下のように表示されます。
 
 ```
 面積=159.213309㎡
