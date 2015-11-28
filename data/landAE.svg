@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1586" height="1416">
+<polygon points="200 1216 1387 1216 1387 200 200 200 "
+ stroke="black" stroke-width="2" fill="none" stroke-dasharray="20 2"/>
+<polygon points="245 1216 200 200 1202 1216 "
+ stroke="black" stroke-width="2" fill="#d0f0d0"/>
+<polygon points="200 200 1387 941 1375 971 "
+ stroke="black" stroke-width="2" fill="#d0f0d0"/>
+<polygon points="200 200 1375 971 1202 1216 "
+ stroke="black" stroke-width="2" fill="#d0f0d0"/>
+<text x="223" y="708" font-size="60" text-anchor="middle" dominant-baseline="middle" transform="rotate(87.462163 223 708)">10.17</text>
+<text x="724" y="1216" font-size="60" text-anchor="middle" dominant-baseline="middle" transform="rotate(-0.000000 724 1216)">9.57</text>
+<text x="793" y="571" font-size="60" text-anchor="middle" dominant-baseline="middle" transform="rotate(31.982807 793 571)">13.99</text>
+<text x="787" y="585" font-size="60" text-anchor="middle" dominant-baseline="middle" transform="rotate(33.267393 787 585)">14.05</text>
+<text x="701" y="708" font-size="60" text-anchor="middle" dominant-baseline="middle" transform="rotate(45.396647 701 708)">14.27</text>
+<text x="1381" y="956" font-size="60" text-anchor="middle" dominant-baseline="middle" transform="rotate(-68.181135 1381 956)">0.32</text>
+<text x="1288" y="1093" font-size="60" text-anchor="middle" dominant-baseline="middle" transform="rotate(-54.849867 1288 1093)">3.00</text>
+<text x="245" y="1216" font-size="60" text-anchor="middle" dominant-baseline="middle">a</text>
+<text x="200" y="200" font-size="60" text-anchor="middle" dominant-baseline="middle">b</text>
+<text x="1387" y="941" font-size="60" text-anchor="middle" dominant-baseline="middle">c</text>
+<text x="1375" y="971" font-size="60" text-anchor="middle" dominant-baseline="middle">d</text>
+<text x="1202" y="1216" font-size="60" text-anchor="middle" dominant-baseline="middle">e</text>
+<text x="793" y="1216" font-size="60" text-anchor="middle" dominant-baseline="middle" transform="rotate(-0.000000 793 1216)">11.87</text>
+<text x="200" y="708" font-size="60" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90.000000 200 708)">10.16</text>
+</svg>

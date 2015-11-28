@@ -14,19 +14,14 @@ public class SVG {
     public static final String NL = String.format("%n");
 
     final StringBuilder text = new StringBuilder();
-    double width, height;
-    double minX = Double.MAX_VALUE;
-    double maxX = Double.MIN_VALUE;
-    double minY = Double.MAX_VALUE;
-    double maxY = Double.MIN_VALUE;
+    final double width, height;
+    final double minX, maxX, minY, maxY;
     
-    public SVG(Collection<Point> points) {
-        for (Point e : points) {
-            minX = Math.min(minX, e.x);
-            maxX = Math.max(maxX, e.x);
-            minY = Math.min(minY, e.y);
-            maxY = Math.max(maxY, e.y);
-        }
+    public SVG(double minX, double maxX, double minY, double maxY) {
+        this.minX = minX;
+        this.maxX = maxX;
+        this.minY = minY;
+        this.maxY = maxY;
         width = maxX - minX;
         height = maxY - minY;
     }
@@ -36,7 +31,7 @@ public class SVG {
     }
     
     Point transform(Point p) {
-        return new Point(p.x - minX + MARGIN, height - p.y - minY + MARGIN);
+        return new Point((p.x - minX + MARGIN) * SCALE, (height - p.y - minY + MARGIN) * SCALE);
     }
 
     private void printf(String format, Object... args) {
@@ -64,7 +59,7 @@ public class SVG {
         printf("<polygon points=\"");
         for (Point e : points) {
             Point p = transform(e);
-            printf("%d %d ", scale(p.x), scale(p.y));
+            printf("%.0f %.0f ", p.x, p.y);
         }
         printf("\"%n");
         printf(" stroke=\"black\" stroke-width=\"2\"");
@@ -75,7 +70,7 @@ public class SVG {
     
     public void text(Point at, String text) {
         Point p = transform(at);
-        printf("<text x=\"%d\" y=\"%d\"", scale(p.x), scale(p.y));
+        printf("<text x=\"%.0f\" y=\"%.0f\"", p.x, p.y);
         printf(" font-size=\"60\"");
         printf(" text-anchor=\"middle\" dominant-baseline=\"middle\"");
         printf(">%s</text>%n", text);
@@ -85,10 +80,10 @@ public class SVG {
         Point center = transform(start.plus(end).multiply(0.5));
         Point diff = end.minus(start);
         double alpha = diff.x == 0.0 ? -90 : -Math.atan(diff.y / diff.x) * 180 / Math.PI;
-        printf("<text x=\"%d\" y=\"%d\"", scale(center.x), scale(center.y));
+        printf("<text x=\"%.0f\" y=\"%.0f\"", center.x, center.y);
         printf(" font-size=\"60\"");
         printf(" text-anchor=\"middle\" dominant-baseline=\"middle\"");
-        printf(" transform=\"rotate(%f %d %d)\"", alpha, scale(center.x), scale(center.y));
+        printf(" transform=\"rotate(%f %.0f %.0f)\"", alpha, center.x, center.y);
         printf(">%s</text>%n", text);
     }
 

@@ -81,6 +81,9 @@ public class Land {
     public final List<Triangle> triangles;
     public final Map<String, Double> distances;
     public final Map<String, Point> points;
+    public final double minX, maxX, minY, maxY;
+    public final double width, height;
+    public final double area, legalShapedArea;
     
     /**
      * 
@@ -115,13 +118,11 @@ public class Land {
         for (Triangle e : triangles)
             regions.add(new Region(e));
         System.out.println(regions);
-        double total = 0;
-        for (Region r : regions) {
-            double area = r.area();
-            System.out.printf("%f : %s%n", area, r);
-            total += area;
-        }
-        System.out.println("total area=" + total);
+        double area = 0;
+        for (Region r : regions)
+            area += r.area();
+        this.area = area;
+        System.out.println("total area=" + area);
         Map<String, Point> _points = new TreeMap<>();
         this.points = Collections.unmodifiableMap(_points);
         _points.put(startBase, new Point(0, 0));
@@ -139,14 +140,31 @@ public class Land {
         }
         if (!regions.isEmpty())
             throw new RuntimeException("計算できません。計算済の点=" + points + ", 未計算の領域=" + regions);
+        double minX = Double.MAX_VALUE;
+        double maxX = Double.MIN_VALUE;
+        double minY = Double.MAX_VALUE;
+        double maxY = Double.MIN_VALUE;
+        for (Point e : _points.values()) {
+            minX = Math.min(minX, e.x);
+            maxX = Math.max(maxX, e.x);
+            minY = Math.min(minY, e.y);
+            maxY = Math.max(maxY, e.y);
+        }
+        this.minX = minX;
+        this.maxX = maxX;
+        this.minY = minY;
+        this.maxY = maxY;
+        this.width = maxX - minX;
+        this.height = maxY - minY;
+        this.legalShapedArea = width * height;
     }
     
     public void writeSVG(File file) throws IOException {
-        SVG svg = new SVG(points.values());
-        Point topLeft = new Point(svg.minX, svg.minY);
-        Point bottomLeft = new Point(svg.minX, svg.maxY);
-        Point topRight = new Point(svg.maxX, svg.minY);
-        Point bottomRight = new Point(svg.maxX, svg.maxY);
+        SVG svg = new SVG(minX, maxX, minY, maxY);
+        Point topLeft = new Point(minX, minY);
+        Point bottomLeft = new Point(minX, maxY);
+        Point topRight = new Point(maxX, minY);
+        Point bottomRight = new Point(maxX, maxY);
         svg.polygonDash(Arrays.asList(topLeft, topRight, bottomRight, bottomLeft));
         for (Triangle e : triangles) {
             Point[] ps = new Point[] {points.get(e.points[0]), points.get(e.points[1]), points.get(e.points[2])};
@@ -166,11 +184,11 @@ public class Land {
         for (Entry<String, Point> e : points.entrySet())
             svg.text(e.getValue(), e.getKey()); 
         // 想定整形地
-        double x = svg.maxX - svg.minX;
-        double y = svg.maxY - svg.minY;
-        svg.text(new Point(svg.minX, svg.minY), new Point(svg.maxX, svg.minY), String.format("%.2f", x));
-        svg.text(new Point(svg.minX, svg.minY), new Point(svg.minX, svg.maxY), String.format("%.2f", y));
+        double x = maxX - minX;
+        double y = maxY - minY;
+        svg.text(new Point(minX, minY), new Point(maxX, minY), String.format("%.2f", x));
+        svg.text(new Point(minX, minY), new Point(minX, maxY), String.format("%.2f", y));
         svg.writeTo(file);
     }
- 
+    
 }

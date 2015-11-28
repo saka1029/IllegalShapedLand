@@ -13,7 +13,7 @@ import org.junit.Test;
 public class TestLand {
 
     @Test
-    public void testFront() throws IOException {
+    public void testMyLand() throws IOException {
         List<Edge> edges = Arrays.asList(
             new Edge("a", "b", 10.17),
             new Edge("a", "e", 9.57),
@@ -22,36 +22,22 @@ public class TestLand {
             new Edge("b", "e", 14.27),
             new Edge("d", "c", 0.32),
             new Edge("e", "d", 3.00)
-//            new Edge("d", "e", 3.00)
         );
         List<Triangle> triangles = Arrays.asList(
             new Triangle("a", "b", "e"),
             new Triangle("b", "c", "d"),
             new Triangle("b", "d", "e")
         );
-        Land land = new Land("a", "e", edges, triangles);
-        land.writeSVG(new File("data/front.svg"));
-    }
-
-    @Test
-    public void testSide() throws IOException {
-        List<Edge> edges = Arrays.asList(
-            new Edge("a", "b", 10.17),
-            new Edge("a", "e", 9.57),
-            new Edge("b", "c", 13.99),
-            new Edge("b", "d", 14.05),
-            new Edge("b", "e", 14.27),
-            new Edge("d", "c", 0.32),
-            new Edge("e", "d", 3.00)
-//            new Edge("d", "e", 3.00)
-        );
-        List<Triangle> triangles = Arrays.asList(
-            new Triangle("a", "b", "e"),
-            new Triangle("b", "c", "d"),
-            new Triangle("b", "d", "e")
-        );
-        Land land = new Land("e", "d", edges, triangles);
-        land.writeSVG(new File("data/side.svg"));
+        Land landAE = new Land("a", "e", edges, triangles);
+        System.out.printf("a-e面:");
+        System.out.printf("面積=%f㎡%n", landAE.area);
+        System.out.printf("想定整形地 %fm×%fm=%f㎡%n", landAE.width, landAE.height, landAE.legalShapedArea);
+        landAE.writeSVG(new File("data/landAE.svg"));
+        Land landED = new Land("e", "d", edges, triangles);
+        System.out.printf("e-d面:");
+        System.out.printf("面積=%f㎡%n", landED.area);
+        System.out.printf("想定整形地 %fm×%fm=%f㎡%n", landED.width, landED.height, landED.legalShapedArea);
+        landED.writeSVG(new File("data/landED.svg"));
     }
 
     @Test
