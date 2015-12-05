@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="initial-scale=1.0">
+<mata name="description" content="相続税 土地評価 不整形地 想定整形地">
+<title>想定整形地を求める</title>
+<script type="text/javascript" src="svg.js"></script>
+<script type="text/javascript" src="land.js"></script>
+<style type="text/css">
+body { margin: 0 auto; max-width: 640px; }
+input { width: 6em; }
+</style>
+</head>
+<body onLoad="doLand()" >
+<h1>想定整形地を求める</h1>
+<div id="input">
+<table>
+<caption>三角形の定義(右回りに定義してください)</caption>
+<tr>
+<th>頂点の名前1</th>
+<th>頂点の名前2</th>
+<th>頂点の名前3</th>
+</tr>
+<tr>
+<td><input id="t0c0" type="text" value="a" /></td>
+<td><input id="t0c1" type="text" value="d" /></td>
+<td><input id="t0c2" type="text" value="c" /></td>
+</tr>
+<tr>
+<td><input id="t1c0" type="text" value="a" /></td>
+<td><input id="t1c1" type="text" value="c" /></td>
+<td><input id="t1c2" type="text" value="b" /></td>
+</tr>
+<tr>
+<td><input id="t2c0" type="text" /></td>
+<td><input id="t2c1" type="text" /></td>
+<td><input id="t2c2" type="text" /></td>
+</tr>
+<tr>
+<td><input id="t3c0" type="text" /></td>
+<td><input id="t3c1" type="text" /></td>
+<td><input id="t3c2" type="text" /></td>
+</tr>
+<tr>
+<td><input id="t4c0" type="text" /></td>
+<td><input id="t4c1" type="text" /></td>
+<td><input id="t4c2" type="text" /></td>
+</tr>
+<tr>
+<td><input id="t5c0" type="text" /></td>
+<td><input id="t5c1" type="text" /></td>
+<td><input id="t5c2" type="text" /></td>
+</tr>
+<tr>
+<td><input id="t6c0" type="text" /></td>
+<td><input id="t6c1" type="text" /></td>
+<td><input id="t6c2" type="text" /></td>
+</tr>
+<tr>
+<td><input id="t7c0" type="text" /></td>
+<td><input id="t7c1" type="text" /></td>
+<td><input id="t7c2" type="text" /></td>
+</tr>
+</table>
+<br>
+<table>
+<caption>辺の定義</caption>
+<tr>
+<th>頂点の名前1</th>
+<th>頂点の名前2</th>
+<th>辺の長さ(m)</th>
+</tr>
+<tr>
+<td><input id="e0l" type="text" value="a" /></td>
+<td><input id="e0r" type="text" value="b" /></td>
+<td><input id="e0d" type="number" min="0.00" step="0.01" value="17.17" /></td>
+</tr>
+<tr>
+<td><input id="e1l" type="text" value="b" /></td>
+<td><input id="e1r" type="text" value="c" /></td>
+<td><input id="e1d" type="number" min="0.00" step="0.01" value="08.01" /></td>
+</tr>
+<tr>
+<td><input id="e2l" type="text" value="c" /></td>
+<td><input id="e2r" type="text" value="d" /></td>
+<td><input id="e2d" type="number" min="0.00" step="0.01" value="13.40" /></td>
+</tr>
+<tr>
+<td><input id="e3l" type="text" value="d" /></td>
+<td><input id="e3r" type="text" value="a" /></td>
+<td><input id="e3d" type="number" min="0.00" step="0.01" value="13.40" /></td>
+</tr>
+<tr>
+<td><input id="e4l" type="text" value="a" /></td>
+<td><input id="e4r" type="text" value="c" /></td>
+<td><input id="e4d" type="number" min="0.00" step="0.01" value="18.95" /></td>
+</tr>
+<tr>
+<td><input id="e5l" type="text" /></td>
+<td><input id="e5r" type="text" /></td>
+<td><input id="e5d" type="number" min="0.00" step="0.01" /></td>
+</tr>
+<tr>
+<td><input id="e6l" type="text" /></td>
+<td><input id="e6r" type="text" /></td>
+<td><input id="e6d" type="number" min="0.00" step="0.01" /></td>
+</tr>
+<tr>
+<td><input id="e7l" type="text" /></td>
+<td><input id="e7r" type="text" /></td>
+<td><input id="e7d" type="number" min="0.00" step="0.01" /></td>
+</tr>
+<tr>
+<td><input id="e8l" type="text" /></td>
+<td><input id="e8r" type="text" /></td>
+<td><input id="e8d" type="number" min="0.00" step="0.01" /></td>
+</tr>
+<tr>
+<td><input id="e9l" type="text" /></td>
+<td><input id="e9r" type="text" /></td>
+<td><input id="e9d" type="number" min="0.00" step="0.01" /></td>
+</tr>
+<tr>
+<td><input id="e10l" type="text" /></td>
+<td><input id="e10r" type="text" /></td>
+<td><input id="e10d" type="number" min="0.00" step="0.01" /></td>
+</tr>
+<tr>
+<td><input id="e11l" type="text" /></td>
+<td><input id="e11r" type="text" /></td>
+<td><input id="e11d" type="number" min="0.00" step="0.01" /></td>
+</tr>
+<tr>
+<td><input id="e12l" type="text" /></td>
+<td><input id="e12r" type="text" /></td>
+<td><input id="e12d" type="number" min="0.00" step="0.01" /></td>
+</tr>
+<tr>
+<td><input id="e13l" type="text" /></td>
+<td><input id="e13r" type="text" /></td>
+<td><input id="e13d" type="number" min="0.00" step="0.01" /></td>
+</tr>
+<tr>
+<td><input id="e14l" type="text" /></td>
+<td><input id="e14r" type="text" /></td>
+<td><input id="e14d" type="number" min="0.00" step="0.01" /></td>
+</tr>
+<tr>
+<td><input id="e15l" type="text" /></td>
+<td><input id="e15r" type="text" /></td>
+<td><input id="e15d" type="number" min="0.00" step="0.01" /></td>
+</tr>
+<tr>
+<td><input id="e16l" type="text" /></td>
+<td><input id="e16r" type="text" /></td>
+<td><input id="e16d" type="number" min="0.00" step="0.01" /></td>
+</tr>
+<tr>
+<td><input id="e17l" type="text" /></td>
+<td><input id="e17r" type="text" /></td>
+<td><input id="e17d" type="number" min="0.00" step="0.01" /></td>
+</tr>
+<tr>
+<td><input id="e18l" type="text" /></td>
+<td><input id="e18r" type="text" /></td>
+<td><input id="e18d" type="number" min="0.00" step="0.01" /></td>
+</tr>
+<tr>
+<td><input id="e19l" type="text" /></td>
+<td><input id="e19r" type="text" /></td>
+<td><input id="e19d" type="number" min="0.00" step="0.01" /></td>
+</tr>
+</table>
+<table>
+<br>
+<caption>正面の定義</caption>
+<tr>
+<th>基準となる点1の名前</th>
+<th>基準となる点2の名前</th>
+</tr>
+<tr>
+<td><input id="bl" type="text" value="a" /></td>
+<td><input id="br" type="text" value="b" /></td>
+</tr>
+</table>
+<br>
+<input id="submit" type="button" value="想定整形地を求める" onClick="doLand()" style="width:20em"/>
+</div>
+<br>
+<div id="result">
+    <div id="error" style="color:red;"></div>
+    <pre id="message"></pre>
+    <div id="svg"></div>
+    <div id="download" ></div>
+</div>
+<script language="javascript">
+
+    function value(id) {
+        return document.getElementById(id).value;
+    }
+    
+    function removeChildren(parentId) {
+        var p = document.getElementById(parentId);
+        while (p.hasChildNodes())
+            p.removeChild(p.lastChild);
+    }
+    
+    function round(n) {
+        return Math.round(n * 100) / 100;
+    }
+    
+    function doLand() {
+        removeChildren("error");
+        removeChildren("message");
+        removeChildren("svg");
+        removeChildren("download");
+        try {
+            var triangles = [];
+            for (var r = 0; r < 100; ++r) {
+                var rn = "t" + r;
+                if (value(rn + "c0") == "") break;
+                triangles.push(new Triangle(
+                    value(rn + "c0"), value(rn + "c1"), value(rn + "c2")));
+            }
+            var edges = [];
+            for (var r = 0; r < 100; ++r) {
+                var er = "e" + r;
+                if (value(er + "l") == "") break;
+                edges.push(new Edge(
+                    value(er + "l"), value(er + "r"), parseFloat(value(er + "d")) ));
+            }
+            var land = new Land(value("bl"), value("br"), edges, triangles);
+            var w = round(land.width);
+            var h = round(land.height);
+            var message = "面積: " + round(land.area) + "㎡\n";
+            var a = round(w * h);
+            message += "想定整形地: " + w + "ｍ × " + h + "ｍ = " + a + "㎡\n";
+            message += "かげ地率: " + round((a - land.area) / a * 100) + "％\n";
+            message += "座標値:\n";
+            for (var key in land.points)
+                message += "  " + key + " = " + land.points[key] + "\n";
+            document.getElementById("message").appendChild(document.createTextNode(message));
+            var svg = land.svg();
+            document.getElementById("svg").appendChild(svg);
+            // download
+            var header = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>\n";
+            var text = header + document.getElementById("svg").innerHTML;
+            var blob = new Blob([text], {type: "image/svg+xml"});
+            var download = document.getElementById("download");
+            var a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.target = '_blank';
+            a.download = 'land.svg';
+            a.innerText = "SVGダウンロード";
+            download.appendChild(a);
+        } catch (e) {
+            removeChildren("error");
+            removeChildren("message");
+            removeChildren("svg");
+            removeChildren("download");
+            document.getElementById("error").appendChild(document.createTextNode(e));
+        }
+    }
+</script>
+</body>
+</html>
