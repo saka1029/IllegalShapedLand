@@ -1,8 +1,9 @@
 # IllegalShapedLand
 
 相続税の計算における不整形地から想定整形地を求めます。
-
-このプログラムは以下のページで実行することができます。
+Java版とJavaScript版があります。
+ここではJava版について説明します。
+JavaScript版のプログラムは以下のページで実行することができます。
 
 [想定整形地を求める](http://saka1029.github.io/IllegalShapedLand/html/)
 
