@@ -1,12 +1,9 @@
 package jp.saka1029.land;
 
-import static org.junit.Assert.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.Test;
 
@@ -61,7 +58,7 @@ public class TestLand {
         System.out.printf("想定整形地 %fm×%fm=%f㎡%n", land.width, land.height, land.legalShapedArea);
         land.writeSVG(new File("data/land.svg"));
     }
-    
+
 
     @Test
     public void testSample() throws IOException {
@@ -85,7 +82,7 @@ public class TestLand {
         System.out.printf("想定整形地 %fm×%fm=%f㎡%n", land2.width, land2.height, land2.legalShapedArea);
         land2.writeSVG(new File("data/sample2.svg"));
     }
-    
+
     double area(double a, double b, double c) {
         double s = (a + b + c) / 2;
         return Math.sqrt(s * (s - a) * (s - b) * (s - c));
